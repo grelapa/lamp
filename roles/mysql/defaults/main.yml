@@ -1,20 +1,8 @@
 ---
- - name: Install MariaDB 
-   yum: name={{ item }} state=installed
-   with_items:
-     - mariadb-server
-     - mariadb
-     - MySQL-python
-
- - name: Start MariaDB Service
-   service: name=mariadb state=started enabled=yes
-   
- - name: Update root password
-   mysql_user: name=root host={{ item }} password={{ mariadb_root_password }} state=present
-   with_items:
-     - 127.0.0.1
-     - ::1
-     - localhost
-   tags: mariadb
-   notify: 
-     - restart mariadb
+# vars file for mariadb
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: testuser
+dbname: testdb
+upassword: password
+mariadb_root_password: password

@@ -5,6 +5,6 @@
 
   roles:
     - apache
-    #- mysql
+    - mysql
     #- php
     #- phpmyadmin 

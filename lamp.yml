@@ -1,0 +1,11 @@
+---
+name: Deploy Apache,MariaDB,PHPmyadmin
+hosts: all
+become: yes
+
+roles:
+  - apache
+  - mysql
+  - firewalls
+  - php
+  - phpmyadmin 

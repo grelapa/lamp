@@ -4,6 +4,7 @@
 
  - name: "Install phpmyadmin packages"
    yum: name={{ item }}  enablerepo=remi-php70 state=present
+    - debug: msg="touch {{item.id}}"
    with_items:
        - phpmyadmin
        - php
@@ -16,6 +17,7 @@
        - php-mcrypt
        - php-xml
        - php-mysql
+       when: item.create | default(True) | bool
             
  - name: "Prepare - remove welcome vhost"
    file:

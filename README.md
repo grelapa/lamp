@@ -1,0 +1,2 @@
+# lamp
+mariadb,apache,phpmyadmin

@@ -6,6 +6,5 @@
   roles:
     - apache
     #- mysql
-    #- firewalls
     #- php
     #- phpmyadmin 

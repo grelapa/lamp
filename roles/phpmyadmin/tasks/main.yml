@@ -1,0 +1,47 @@
+---
+ - name: Add Yum Repositories
+   yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+ - name: "Install phpmyadmin packages"
+   yum: name={{ item }}  enablerepo=remi-php70 state=present
+   with_items:
+       - phpmyadmin
+       - php
+       - php-mbstring
+       - php-devel
+       - php-opcache
+       - php-soap
+       - php-fpm
+       - php-pdo
+       - php-mcrypt
+       - php-xml
+       - php-mysql
+            
+ - name: "Prepare - remove welcome vhost"
+   file:
+     dest: "/etc/httpd/conf.d/welcome.conf"
+     state: absent
+   notify:
+     - "Restart Apache"
+
+ - name: "Copy vhost file"
+   copy:
+     src: "../files/vhost.conf"
+     dest: "/etc/httpd/conf.d/phpMyAdmin.conf"
+   notify:
+    - "Restart Apache"
+
+ - name: "Copy php.ini file"
+   copy:
+     src: "../files/php.ini"
+     dest: "/etc/php.ini"
+   notify:
+     - "Restart Apache"
+
+ - name: "Copy phpMyAdmin config file"
+   template:
+     src: "../files/config.inc.php.j2"
+     dest: "/etc/phpMyAdmin/config.inc.php"
+     mode: "0640"
+     group: apache
+     owner: root

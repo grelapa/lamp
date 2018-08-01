@@ -1,10 +1,10 @@
 ---
-- name: install apache
-  yum:  
-     name: "{{ item }}" 
-     state: latest
-  with_items: "{{apache_packages}}"
-  service: name=httpd state=started enabled=yes
+ - name: install apache
+    yum:  
+      name: "{{ item }}" 
+      state: latest
+    with_items: "{{apache_packages}}"
+    service: name=httpd state=started enabled=yes
   
-- name: Open firewall 
-  command: firewall-cmd --set-default-zone=public && firewall-cmd --permanent --zone=public --add-service=http && firewall-cmd --permanent --zone=public --add-port=80/tcp && firewall-cmd --reload
+ - name: Open firewall 
+    command: firewall-cmd --set-default-zone=public && firewall-cmd --permanent --zone=public --add-service=http && firewall-cmd --permanent --zone=public --add-port=80/tcp && firewall-cmd --reload

@@ -10,3 +10,10 @@
   
  - name: Open firewall 
    shell: firewall-cmd --set-default-zone=public && firewall-cmd --permanent --zone=public --add-service=http && firewall-cmd --permanent --zone=public --add-port=80/tcp && firewall-cmd --reload
+
+ - name: ADD phpinfo
+   copy: 
+    src: index.php
+    dst: /var/www/html
+   notify: restart apache 
+   

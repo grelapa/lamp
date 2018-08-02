@@ -10,10 +10,23 @@
    service: name=mariadb state=started enabled=yes
    
  - name: Update root password
-   mysql_user: name=root host={{ item }} password={{ mariadb_root_password }} state=present
+   mysql_user: name=root host={{ item }} password={{ mariadb_root_password }} login_user=root login_password="" state=present
    with_items:
      - 127.0.0.1
      - ::1
      - localhost
    notify: 
      - restart mariadb
+   ignore_errors: true
+
+ - name : MySQL: service: ensure mysql started
+   service:
+     name: mysqld 
+     state: started 
+     enabled: yes
+     
+ - name: Change Root password
+   mysql_user:
+    name=root password={{mariadb_root_password}} update_password=always
+   notify:
+    - restart mariadb

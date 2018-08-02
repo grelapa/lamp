@@ -5,5 +5,5 @@ mysql_port: 3306
 dbuser: testuser
 dbname: testdb
 upassword: password
-#mariadb_root_password: password
-password={{ maridb_root_password }}
+mariadb_root_password: password
+#password={{ maridb_root_password }}

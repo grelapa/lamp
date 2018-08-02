@@ -6,4 +6,4 @@ dbuser: testuser
 dbname: testdb
 upassword: password
 mariadb_root_password: password
-password: "{{ maridb_root_password }}"
+#password: "{{ maridb_root_password }}"

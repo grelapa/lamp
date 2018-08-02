@@ -6,3 +6,4 @@ dbuser: testuser
 dbname: testdb
 upassword: password
 mariadb_root_password: password
+password={{ mysql_root_password }}

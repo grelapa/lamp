@@ -19,7 +19,7 @@
      - restart mariadb
    ignore_errors: true
 
- - name : MySQL: service: ensure mysql started
+ - name : ensure mysql started
    service:
      name: mysqld 
      state: started 

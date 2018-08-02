@@ -19,11 +19,11 @@
      - restart mariadb
    ignore_errors: true
 
- - name : ensure mysql started
-   service:
-     name: mysqld 
-     state: started 
-     enabled: yes
+# - name : ensure mysql started
+#   service:
+#     name: mysqld 
+#     state: started 
+#     enabled: yes
      
  - name: Change Root password
    mysql_user:
